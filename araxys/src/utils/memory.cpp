@@ -1,5 +1,4 @@
 #include "memory.h"
-
 const std::uintptr_t Memory::GetModuleaddress(const std::string_view moduleName) noexcept
 {
 	::MODULEENTRY32 entry = {};

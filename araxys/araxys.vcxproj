@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -73,6 +73,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)build</OutDir>
     <IntDir>$(Configuration)build\obj</IntDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
+    <IncludePath>C:\dev\araxys\araxys\extern;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)build</OutDir>
+    <IntDir>$(Configuration)build\obj</IntDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
+    <IncludePath>C:\dev\araxys\araxys\extern;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -80,10 +88,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,12 +105,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,6 +141,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="extern\imgui\imgui.cpp" />
+    <ClCompile Include="extern\imgui\imgui_demo.cpp" />
+    <ClCompile Include="extern\imgui\imgui_draw.cpp" />
+    <ClCompile Include="extern\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="extern\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="extern\imgui\imgui_tables.cpp" />
+    <ClCompile Include="extern\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\cheat\armor.cpp" />
     <ClCompile Include="src\cheat\bullet.cpp" />
     <ClCompile Include="src\cheat\esp.cpp" />
@@ -139,12 +158,22 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\print\print.cpp" />
     <ClCompile Include="src\utils\memory.cpp" />
+    <ClCompile Include="src\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="extern\imgui\imconfig.h" />
+    <ClInclude Include="extern\imgui\imgui.h" />
+    <ClInclude Include="extern\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="extern\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="extern\imgui\imgui_internal.h" />
+    <ClInclude Include="extern\imgui\imstb_rectpack.h" />
+    <ClInclude Include="extern\imgui\imstb_textedit.h" />
+    <ClInclude Include="extern\imgui\imstb_truetype.h" />
     <ClInclude Include="src\cheat\esp.h" />
     <ClInclude Include="src\print\print.h" />
     <ClInclude Include="src\utils\memory.h" />
     <ClInclude Include="src\utils\offsets.h" />
+    <ClInclude Include="src\window\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
